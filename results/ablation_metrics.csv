@@ -1,6 +1,8 @@
-ablation,combined_stress_mean_success,ci95_success,interpretation
-full_proposed_branch_mechanism,0.6717,0.0149,all components
-minus_branch_atlas,0.5621,0.0112,removes explicit unrealized futures
-minus_tail_risk_objective,0.5752,0.0160,uses mean predicted value only
-minus_diagnostic_probe,0.6052,0.0186,does not actively test ambiguous physical modes
-minus_failure_memory,0.6188,0.0138,does not reuse repaired beliefs
+ablation,groups,mean_dominant_failure_accuracy,ci95_dominant_failure_accuracy,mean_top2_failure_recall,ci95_top2_failure_recall,mean_calibration_error,ci95_calibration_error,mean_early_warning_lead_time,ci95_early_warning_lead_time,mean_cross_morphology_generalization_gap,ci95_cross_morphology_generalization_gap,mean_task_success,ci95_task_success,mean_dominant_failure_rate,ci95_dominant_failure_rate,mean_safety_violation_rate,ci95_safety_violation_rate,mean_intervention_cost,ci95_intervention_cost,mean_unnecessary_intervention_rate,ci95_unnecessary_intervention_rate,mean_planning_regret_to_oracle,ci95_planning_regret_to_oracle
+failure_history_only,175,0.38613,0.00762,0.56262,0.00744,0.06775,0.00647,0.67558,0.00333,0.23668,0.00137,0.54690,0.00762,0.30720,0.00677,0.11833,0.00557,0.03225,0.00056,0.00000,0.00000,0.26211,0.00307
+minus_calibration,175,0.64815,0.00747,0.77601,0.00701,0.37371,0.00751,0.71885,0.00330,0.12506,0.00137,0.60482,0.00727,0.16696,0.00585,0.12964,0.00625,0.03801,0.00066,0.00000,0.00000,0.19959,0.00297
+minus_constraint_family_head,175,0.38905,0.00750,0.56351,0.00750,0.07070,0.00645,0.67594,0.00338,0.12506,0.00137,0.53048,0.00899,0.30518,0.00722,0.11708,0.00623,0.03160,0.00057,0.00000,0.00000,0.26155,0.00333
+minus_intervention_cost_model,175,0.64226,0.00720,0.77619,0.00540,0.16732,0.00727,0.71828,0.00306,0.12506,0.00137,0.61887,0.00806,0.16542,0.00576,0.09690,0.00518,0.05347,0.00079,0.00000,0.00000,0.18947,0.00285
+minus_morphology_embedding,175,0.41363,0.00737,0.57071,0.00779,0.07735,0.00677,0.67897,0.00337,0.26199,0.00137,0.55423,0.00735,0.29065,0.00683,0.11530,0.00562,0.03234,0.00058,0.00000,0.00000,0.25750,0.00314
+morphology_only,175,0.44006,0.00712,0.60571,0.00687,0.14511,0.00714,0.68442,0.00309,0.12506,0.00137,0.53125,0.00789,0.27542,0.00635,0.11821,0.00600,0.03244,0.00057,0.00000,0.00000,0.25565,0.00310
+proposed_failure_predictive_morphology,175,0.64899,0.00795,0.78143,0.00683,0.17412,0.00801,0.71937,0.00330,0.12506,0.00137,0.58042,0.00805,0.16940,0.00599,0.11393,0.00551,0.03080,0.00056,0.00000,0.00000,0.21114,0.00301

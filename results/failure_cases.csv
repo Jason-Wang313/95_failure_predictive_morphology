@@ -1,0 +1,6 @@
+case,task_success,dominant_failure_accuracy,dominant_failure_rate,safety_violation_rate,lesson
+aerial_manipulator,0.5497,0.6315,0.1926,0.1408,payload inertia and actuator saturation leave high regret despite good family prediction
+arm_gripper,0.5842,0.6613,0.1667,0.1137,contact geometry is predicted but intervention cost and precision penalties reduce success
+differential_drive,0.6104,0.6488,0.1562,0.0818,traction and turn-radius bottlenecks are often handled as well by constraint-aware MPC
+quadruped,0.5878,0.6426,0.1726,0.1015,terrain slip creates failure modes that online system identification adapts to faster
+underwater_vehicle,0.5756,0.6351,0.1839,0.1134,state-estimation dropout and drag shifts favor conservative constraint-aware control

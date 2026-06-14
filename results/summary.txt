@@ -1,16 +1,32 @@
-Submission-hardening experiment for paper 95 failure_predictive_morphology
-Seven seeds, 600 episodes per seed, strong baselines, ablations, stress sweep, and negative cases.
-observed_only_behavior_clone hidden_mode_shift mean_success=0.4179 ci95=0.0152 tail=0.5821
-observed_only_behavior_clone combined_stress mean_success=0.3224 ci95=0.0071 tail=0.6776
-data_augmentation_wam hidden_mode_shift mean_success=0.5005 ci95=0.0255 tail=0.4995
-data_augmentation_wam combined_stress mean_success=0.4100 ci95=0.0177 tail=0.5900
-scalar_uncertainty_planner hidden_mode_shift mean_success=0.5707 ci95=0.0109 tail=0.4293
-scalar_uncertainty_planner combined_stress mean_success=0.5002 ci95=0.0117 tail=0.4998
-ensemble_disagreement_planner hidden_mode_shift mean_success=0.6071 ci95=0.0114 tail=0.3929
-ensemble_disagreement_planner combined_stress mean_success=0.5388 ci95=0.0073 tail=0.4612
-conformal_risk_filter hidden_mode_shift mean_success=0.6145 ci95=0.0150 tail=0.3855
-conformal_risk_filter combined_stress mean_success=0.5464 ci95=0.0151 tail=0.4536
-proposed_branch_mechanism hidden_mode_shift mean_success=0.6919 ci95=0.0216 tail=0.3081
-proposed_branch_mechanism combined_stress mean_success=0.6614 ci95=0.0175 tail=0.3386
-oracle_branch_upper_bound hidden_mode_shift mean_success=0.7676 ci95=0.0164 tail=0.2324
-oracle_branch_upper_bound combined_stress mean_success=0.7369 ci95=0.0191 tail=0.2631
+Paper 95: failure_predictive_morphology evidence audit
+Seeds: 7; morphologies: 5; tasks: 5; splits: 5; episodes per group: 96
+Evidence type: deterministic local morphology-failure benchmark, not robot hardware validation.
+Terminal decision: KILL_ARCHIVE
+Reason: Proposed morphology-conditioned failure prediction does not clear the ICLR-main gate: the strongest closed-loop baseline (online_system_identification) has higher combined-stress task success, and prediction gains do not translate into a decisive safety/regret win.
+
+Combined-stress ranking by task success:
+- oracle_failure_family: success=0.8817 +/- 0.0050; accuracy=0.9869; failure=0.0019; safety=0.0261; cost=0.0102; regret=0.0240
+- online_system_identification: success=0.6185 +/- 0.0075; accuracy=0.5555; failure=0.1911; safety=0.0899; cost=0.0282; regret=0.1930
+- proposed_failure_predictive_morphology: success=0.5816 +/- 0.0075; accuracy=0.6439; failure=0.1744; safety=0.1102; cost=0.0315; regret=0.2106
+- red_team_failure_retrieval: success=0.5789 +/- 0.0076; accuracy=0.5393; failure=0.2191; safety=0.1120; cost=0.0360; regret=0.2271
+- constraint_aware_mpc: success=0.5699 +/- 0.0080; accuracy=0.3574; failure=0.2918; safety=0.0773; cost=0.0251; regret=0.2400
+- conformal_risk_shield: success=0.5448 +/- 0.0074; accuracy=0.2809; failure=0.3401; safety=0.0585; cost=0.0418; regret=0.2634
+- domain_randomized_policy_selector: success=0.5346 +/- 0.0078; accuracy=0.3946; failure=0.2957; safety=0.1248; cost=0.0180; regret=0.2656
+- per_morphology_calibrated_predictor: success=0.4520 +/- 0.0080; accuracy=0.4188; failure=0.3271; safety=0.1766; cost=0.0143; regret=0.3228
+- generic_failure_predictor: success=0.3919 +/- 0.0080; accuracy=0.0871; failure=0.5571; safety=0.2061; cost=0.0116; regret=0.4036
+
+Gate details:
+- Strongest non-oracle success baseline: online_system_identification (0.6185)
+- Proposed success: 0.5815
+- Best non-oracle dominant-failure baseline: online_system_identification (0.1911)
+- Proposed dominant-failure rate: 0.1744
+- Best non-oracle accuracy baseline: online_system_identification (0.5555)
+- Proposed accuracy: 0.6439; cost: 0.0315; unnecessary intervention: 0.0000
+- Ablations matching full within gate tolerance: minus_calibration, minus_intervention_cost_model
+
+Failure cases:
+- aerial_manipulator: success=0.5497, accuracy=0.6315, failure=0.1926, safety=0.1408; payload inertia and actuator saturation leave high regret despite good family prediction
+- arm_gripper: success=0.5842, accuracy=0.6613, failure=0.1667, safety=0.1137; contact geometry is predicted but intervention cost and precision penalties reduce success
+- differential_drive: success=0.6104, accuracy=0.6488, failure=0.1562, safety=0.0818; traction and turn-radius bottlenecks are often handled as well by constraint-aware MPC
+- quadruped: success=0.5878, accuracy=0.6426, failure=0.1726, safety=0.1015; terrain slip creates failure modes that online system identification adapts to faster
+- underwater_vehicle: success=0.5756, accuracy=0.6351, failure=0.1839, safety=0.1134; state-estimation dropout and drag shifts favor conservative constraint-aware control
