@@ -4,42 +4,135 @@
 \usepackage{hyperref}
 \usepackage{url}
 \usepackage{booktabs}
-\title{Failure-Predictive Morphology: ICLR Main-Conference Gate Archive}
+\usepackage{graphicx}
+\usepackage{microtype}
+
+\title{Failure-Predictive Morphology: A Negative Evidence Audit for Morphology-Conditioned Failure Prediction}
 \author{Anonymous Authors}
+
 \begin{document}
 \maketitle
+
 \begin{abstract}
-This document is not an ICLR main-conference submission. It is the v3 main-conference gate for a generated robotics draft about robot morphology and learning. The original research bet was: Predict which morphology-specific constraints will dominate policy failure. After a stricter hostile review, the honest terminal decision is \textbf{KILL/ARCHIVE}. Submission-hardening version: v3.
+This paper is a submission-hardening audit, not an ICLR-main submission. The generated research bet was that a robot can predict which morphology-specific constraint will dominate policy failure and use that prediction to select safer interventions. We rebuilt the claim as a deterministic morphology-failure benchmark with five morphologies, five tasks, five distribution shifts, nine methods, seven seeds, ablations, stress sweeps, paired confidence intervals, and failure cases. The result is negative. The proposed morphology-conditioned predictor has the best non-oracle dominant-failure accuracy under combined stress, $0.644$, but online system identification has higher task success, $0.618 \pm 0.008$ versus $0.582 \pm 0.007$, and lower planning regret. Two ablations also beat the full method on success. The terminal decision is therefore \textbf{KILL/ARCHIVE for ICLR main}.
 \end{abstract}
 
-\section{Gate Decision}
-The v2 paper was workshop-only. Under the active ICLR-main standard, that is insufficient. The local artifacts contain synthetic multi-seed diagnostics, but no real-robot validation, high-fidelity simulator benchmark, trained world-action model, implemented real baselines, or manual full-paper related-work synthesis. These missing items are not recoverable by editing text or rerunning the synthetic script.
+\section{Terminal Decision}
 
-\section{Fatal ICLR-Main Blockers}
-\begin{itemize}
-\item Evidence is synthetic and generated from a shared batch template.
-\item Baselines are diagnostic probability models, not implemented competing robot systems.
-\item Ablations do not correspond to a trained model checkpoint.
-\item No hardware, high-fidelity benchmark, qualitative rollouts, or failure videos are available.
-\item Related work is based on pool slices and hostile metadata, not a manual full-paper synthesis.
-\item Claims would be misleading if framed as ICLR-main empirical robotics evidence.
-\end{itemize}
+The paper fails the ICLR-main evidence gate. The claim under test is not simply that morphology features can predict failures; that is too crowded by constrained control, robust planning, system identification, failure-aware reinforcement learning, and red-team policy testing. The claim must be closed-loop: predicting the dominant morphology-specific failure family should improve controller selection or intervention under embodiment and environment shift.
+
+The local benchmark does not support that claim. The proposed method predicts failure families better than all non-oracle baselines, but online system identification executes better. The paired proposed-minus-online-system-ID success difference is $-0.03690 \pm 0.00928$ over 175 morphology/task/seed groups. Safety and regret also move in the wrong direction. We therefore archive the idea rather than submit it.
 
 \section{Hostile Prior-Work Pressure}
-The closest local hostile records include:
-\begin{itemize}
-\item Model predictive tracking control based on adaptive sliding mode constraints for unmanned underwater vehicles (2026)
-\item MPC-MPNet: Model-Predictive Motion Planning Networks for Fast, Near-Optimal Planning Under Kinodynamic Constraints (2021)
-\item Stochastic Model Predictive Control for Guided Projectiles Under Impact Area Constraints (2015)
-\item Multi-Parameter Predictive Model of Mobile Robot's Battery Discharge for Intelligent Mission Planning in Multi-Robot Systems (2022)
-\item Application of a stabilizing model predictive controller to path following for a car-like agricultural robot (2024)
-\end{itemize}
-These works make generic world models, uncertainty, model-based planning, and robot policy robustness crowded. Without real empirical evidence, the remaining novelty boundary is too weak for ICLR main.
 
-\section{What Remains Useful}
-The archive is still useful as an idea seed and reproducibility scaffold. The synthetic code, stress-test CSVs, reviewer attacks, and novelty-boundary docs can inform a future project. The correct next step is not more paper polishing; it is new evidence: implemented models, real baselines, manual related work, and robot or high-fidelity simulator validation.
+The hostile literature pool includes constrained model predictive control, MPC-MPNet, adaptive/sliding-mode tracking control, robust task planning and failure recovery, red-teaming robot policies, failure-aware RL, and morphology-specific planning under constraints. Under this prior-work pressure, a paper cannot claim novelty from adding a morphology feature to a failure classifier. The contribution would need to show that explicit morphology-failure prediction improves what the robot chooses and executes. The v4 benchmark finds the opposite.
 
-\section{Terminal Action}
-Decision: \textbf{KILL/ARCHIVE for ICLR main}. Do not submit this paper to ICLR main in the current form. Revival requires a substantially new empirical project.
+\section{Benchmark}
+
+The benchmark is a deterministic local simulator for morphology-specific failure prediction and controller selection. It is not robot hardware validation and is not high-fidelity physics. It is an evidence audit: does the core mechanism remain plausible after strong local baselines and stress tests?
+
+\paragraph{Morphologies.}
+We evaluate differential-drive robots, quadrupeds, arm grippers, aerial manipulators, and underwater vehicles.
+
+\paragraph{Tasks.}
+We test tight-turn navigation, payload transport, gap or step crossing, precision contact manipulation, and disturbance recovery.
+
+\paragraph{Splits.}
+We test nominal morphology, payload shift, terrain/fluid shift, actuator degradation shift, and combined failure stress.
+
+\paragraph{Failure families.}
+The dominant failure families are kinodynamic limits, traction/slip, payload inertia, actuator saturation, contact geometry, state-estimation dropout, and energy budget.
+
+\paragraph{Methods.}
+The methods are a generic failure predictor, per-morphology calibrated predictor, constraint-aware MPC, conformal risk shield, domain-randomized policy selector, online system identification, red-team failure retrieval, proposed failure-predictive morphology, and oracle failure family.
+
+\paragraph{Metrics.}
+Prediction metrics are dominant failure-family accuracy, top-2 recall, calibration error, early-warning lead time, and cross-morphology generalization gap. Closed-loop metrics are task success, dominant-failure rate, safety-violation rate, intervention cost, unnecessary intervention rate, and planning regret to oracle.
+
+\section{Combined-Stress Results}
+
+Table~\ref{tab:combined} is the main decision gate. The proposed method improves dominant-failure accuracy and lowers dominant-failure rate relative to online system identification, but it loses task success, safety, cost, and regret. This is not submission-ready robotics evidence because the prediction gain does not buy better execution.
+
+\begin{table}[t]
+\caption{Combined failure stress. Success and accuracy are higher-is-better; failure, safety violation, and cost are lower-is-better.}
+\label{tab:combined}
+\centering
+\resizebox{\textwidth}{!}{\input{../results/combined_stress_table.tex}}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{../figures/morphology_prediction_quality.png}
+\caption{Prediction quality under combined stress. The proposed method has the best non-oracle failure-family prediction metrics.}
+\label{fig:prediction}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{../figures/morphology_task_outcomes.png}
+\caption{Closed-loop outcomes under combined stress. Online system identification has better task success despite weaker explicit failure-family prediction.}
+\label{fig:outcomes}
+\end{figure}
+
+\section{Paired Gate}
+
+The strongest non-oracle closed-loop baseline is online system identification. The proposed method wins on prediction accuracy and dominant-failure rate, but loses the execution gate:
+
+\begin{table}[t]
+\caption{Paired proposed-minus-online-system-identification differences over 175 morphology/task/seed groups. Positive is good only for accuracy and success; positive is worse for failure, safety violation, cost, and regret.}
+\label{tab:paired}
+\centering
+\resizebox{\textwidth}{!}{\input{../results/pairwise_decision_table.tex}}
+\end{table}
+
+The result is the central negative finding. Explicit pre-execution morphology-failure prediction can be more accurate while still yielding worse execution than a controller that adapts online.
+
+\section{Ablations}
+
+The ablation table makes the mechanism weaker, not stronger. Removing the intervention cost model or calibration improves task success, which suggests the full intervention policy is mis-specified. A mechanism whose stripped variants beat it is not ready for an ICLR-main claim.
+
+\begin{table}[t]
+\caption{Ablations under combined stress. Two ablations beat the full method on task success.}
+\label{tab:ablations}
+\centering
+\resizebox{\textwidth}{!}{\input{../results/ablation_table.tex}}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{../figures/morphology_ablation.png}
+\caption{Ablation outcomes. The full method is not the best closed-loop variant.}
+\label{fig:ablations}
+\end{figure}
+
+\section{Stress Sweep and Cost-Regret Tradeoff}
+
+The stress sweep reinforces the decision. At maximum stress, online system identification reaches $0.611 \pm 0.011$ success, while the proposed method reaches $0.578 \pm 0.010$. The proposed method maintains better prediction accuracy, but its intervention policy carries higher safety violations and regret.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{../figures/morphology_stress_sweep.png}
+\caption{Stress sweep. Online system identification stays ahead on task success as stress increases.}
+\label{fig:stress}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.86\textwidth]{../figures/morphology_cost_regret.png}
+\caption{Cost-regret tradeoff under combined stress. Better prediction accuracy does not translate into lower regret.}
+\label{fig:costregret}
+\end{figure}
+
+\section{Failure Cases}
+
+The negative result appears across morphologies. On aerial manipulation, payload inertia and actuator saturation leave high regret despite good family prediction. On arm grippers, contact geometry is predicted but intervention cost and precision penalties reduce success. On quadrupeds, terrain slip is better handled by online adaptation. On underwater vehicles, state-estimation dropout and drag shifts favor conservative adaptive control. Differential drive is the least damaging case for the proposed method, but it is still not a decisive closed-loop win.
+
+\section{Limitations}
+
+This audit is honest about scope. The benchmark is deterministic and paper-specific, but it is not a real robot experiment, not high-fidelity physics, and not an integration of external baseline codebases. It has no trained checkpoints, hardware videos, or manual full-paper related-work synthesis. Those missing items would already prevent an ICLR-main submission. More importantly, the available evidence is negative before reaching that bar.
+
+\section{Conclusion}
+
+Failure-predictive morphology is not ICLR-main ready. The proposed method improves the explicit prediction target, but online system identification produces better execution and ablations contradict the full mechanism. The correct terminal action is \textbf{KILL/ARCHIVE}. A revival would require a substantially new empirical project where morphology-conditioned failure prediction beats adaptive control, constrained MPC, conformal shielding, and red-team retrieval on success, safety, regret, and intervention cost in real robot or high-fidelity simulator experiments.
 
 \end{document}

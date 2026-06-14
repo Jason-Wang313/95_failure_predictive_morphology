@@ -1,7 +1,9 @@
 # Novelty Decision
 
-Chosen thesis: Failure-Predictive Morphology turns the seed bet into a mechanism: Predict which morphology-specific constraints will dominate policy failure.
+Chosen thesis: Failure-Predictive Morphology tests whether morphology-conditioned dominant-failure prediction improves controller selection under embodiment shift.
 
-New central mechanism: Failure predictive morphology keeps action-critical alternatives explicit until a physical observation collapses them.
+New central mechanism tested: predict the failure family most likely to dominate for a robot body and use that prediction to choose an intervention before execution.
 
-Decision: proceed as a revise/workshop-strength ICLR-style draft with synthetic but runnable evidence.
+Decision: KILL_ARCHIVE.
+
+Reason: the v4 benchmark shows the proposed method has the best non-oracle failure-family accuracy, but it loses closed-loop task success and regret to online system identification and is contradicted by ablations. The novelty boundary is therefore not strong enough for ICLR main.
