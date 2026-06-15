@@ -28,3 +28,12 @@
 - Generated paper-specific figures and LaTeX tables.
 - Found that better morphology-failure prediction does not beat online system identification on closed-loop success or regret.
 - Terminal decision remains: KILL_ARCHIVE.
+
+## v4.1 - 2026-06-15 Rerun Audit
+
+- Re-ran `python -m py_compile src\run_experiment.py` and the full `python src\run_experiment.py`.
+- Confirmed online system identification remains the strongest non-oracle combined-stress success baseline.
+- Confirmed proposed-minus-online-system-ID task-success difference is `-0.03690 +/- 0.00928`.
+- Confirmed the proposed method improves accuracy by `+0.08839 +/- 0.01025` but has worse safety violation and regret.
+- Confirmed `minus_calibration` and `minus_intervention_cost_model` beat the full method on task success.
+- Updated child docs and paper source to keep the v4 KILL_ARCHIVE decision evidence-bound.

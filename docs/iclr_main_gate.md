@@ -2,11 +2,13 @@
 
 Paper: 95 failure_predictive_morphology
 
-Submission-hardening version: v4
+Submission-hardening version: v4.1 rerun audit
 
 Gate verdict: KILL_ARCHIVE
 
-Evidence digest: v4 deterministic morphology-failure benchmark, seven seeds, five morphologies, five tasks, five splits, nine methods, ablations, stress sweep, paired confidence intervals, and failure cases.
+Latest rerun: 2026-06-15
+
+Evidence digest: v4 deterministic morphology-failure benchmark, seven seeds, five morphologies, five tasks, five splits, nine methods, ablations, stress sweep, paired confidence intervals, and failure cases; v4.1 rerun reproduced the same terminal gate failure.
 
 Fatal blockers:
 

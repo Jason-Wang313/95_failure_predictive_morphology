@@ -6,7 +6,7 @@ A morphology-conditioned predictor can identify the constraint family that will 
 
 ## Supported Claims
 
-- The v4 benchmark is reproducible and paper-specific: five morphologies, five tasks, five distribution shifts, nine methods, seven seeds, ablations, stress curves, paired comparisons, and failure cases.
+- The v4.1 rerun confirms the benchmark is reproducible and paper-specific: five morphologies, five tasks, five distribution shifts, nine methods, seven seeds, ablations, stress curves, paired comparisons, and failure cases.
 - The proposed method has the best non-oracle dominant failure-family accuracy under combined stress: 0.644 vs 0.555 for online system identification.
 - The proposed method reduces dominant failure rate relative to online system identification: 0.174 vs 0.191.
 

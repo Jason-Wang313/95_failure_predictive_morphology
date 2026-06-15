@@ -1,6 +1,6 @@
 # 95 Failure-Predictive Morphology
 
-Submission-hardening version: v4
+Submission-hardening version: v4.1 rerun audit
 
 Terminal decision: KILL_ARCHIVE for ICLR main conference.
 
@@ -11,6 +11,8 @@ This repository is a negative evidence audit for the generated robotics idea:
 The v4 rebuild tests the strongest defensible version of the idea: a morphology-conditioned predictor should identify the dominant failure family before execution and use that prediction to choose a safer controller or intervention under embodiment and environment shift.
 
 The predictor does improve failure-family accuracy, but the closed-loop claim fails. Under combined failure stress, online system identification has better task success and lower regret:
+
+The 2026-06-15 continuation rerun reproduced the same terminal decision: better morphology-failure prediction still does not translate into better execution than online system identification.
 
 | Method | Task success | Failure accuracy | Dominant failure | Safety violation | Regret |
 | --- | ---: | ---: | ---: | ---: | ---: |

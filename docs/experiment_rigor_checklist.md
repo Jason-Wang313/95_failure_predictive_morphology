@@ -29,4 +29,4 @@
 - [ ] Manual full-paper related-work synthesis beyond the local hostile pool.
 - [ ] Hardware videos or qualitative rollouts.
 
-Decision: KILL_ARCHIVE. The local benchmark is rigorous enough to falsify the generated claim, not enough to revive it as an ICLR-main submission.
+Decision: KILL_ARCHIVE after v4.1 rerun. The local benchmark is rigorous enough to falsify the generated claim, not enough to revive it as an ICLR-main submission.

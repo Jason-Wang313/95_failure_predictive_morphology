@@ -8,6 +8,8 @@ ICLR main-conference readiness: NO.
 
 The strongest defensible claim was that morphology-conditioned prediction should identify the dominant failure family early enough to improve closed-loop controller selection under embodiment shift. The benchmark does not support that claim.
 
+The 2026-06-15 v4.1 continuation rerun reproduced the same decision.
+
 The proposed method predicts failure families better than online system identification, but the stronger closed-loop baseline still wins:
 
 - online_system_identification task success: 0.618 +/- 0.008.

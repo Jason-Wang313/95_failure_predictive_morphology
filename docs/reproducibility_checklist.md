@@ -2,6 +2,7 @@
 
 ## What Reproduces
 
+- [x] 2026-06-15 rerun log: `logs/95_failure_predictive_morphology_continuation_rerun_20260615.log`
 - [x] `python src/run_experiment.py`
 - [x] `results/metrics.csv`
 - [x] `results/per_morph_task_metrics.csv`

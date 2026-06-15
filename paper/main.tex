@@ -6,6 +6,7 @@
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{microtype}
+\raggedbottom
 
 \title{Failure-Predictive Morphology: A Negative Evidence Audit for Morphology-Conditioned Failure Prediction}
 \author{Anonymous Authors}
@@ -25,11 +26,11 @@ The local benchmark does not support that claim. The proposed method predicts fa
 
 \section{Hostile Prior-Work Pressure}
 
-The hostile literature pool includes constrained model predictive control, MPC-MPNet, adaptive/sliding-mode tracking control, robust task planning and failure recovery, red-teaming robot policies, failure-aware RL, and morphology-specific planning under constraints. Under this prior-work pressure, a paper cannot claim novelty from adding a morphology feature to a failure classifier. The contribution would need to show that explicit morphology-failure prediction improves what the robot chooses and executes. The v4 benchmark finds the opposite.
+The hostile literature pool includes constrained MPC, neural MPC planners, adaptive and sliding-mode control, robust failure recovery, red-teaming robot policies, failure-aware RL, and morphology-specific planning. Under this prior-work pressure, a paper cannot claim novelty from adding a morphology feature to a failure classifier. The contribution would need to show that explicit morphology-failure prediction improves what the robot chooses and executes. The v4 benchmark finds the opposite.
 
 \section{Benchmark}
 
-The benchmark is a deterministic local simulator for morphology-specific failure prediction and controller selection. It is not robot hardware validation and is not high-fidelity physics. It is an evidence audit: does the core mechanism remain plausible after strong local baselines and stress tests?
+The benchmark is a deterministic local simulator for morphology-specific failure prediction and controller selection. It is not robot hardware validation and is not high-fidelity physics. It is an evidence audit: does the core mechanism remain plausible after strong local baselines and stress tests? A 2026-06-15 continuation rerun reproduced the same terminal gate outcome.
 
 \paragraph{Morphologies.}
 We evaluate differential-drive robots, quadrupeds, arm grippers, aerial manipulators, and underwater vehicles.
@@ -133,6 +134,6 @@ This audit is honest about scope. The benchmark is deterministic and paper-speci
 
 \section{Conclusion}
 
-Failure-predictive morphology is not ICLR-main ready. The proposed method improves the explicit prediction target, but online system identification produces better execution and ablations contradict the full mechanism. The correct terminal action is \textbf{KILL/ARCHIVE}. A revival would require a substantially new empirical project where morphology-conditioned failure prediction beats adaptive control, constrained MPC, conformal shielding, and red-team retrieval on success, safety, regret, and intervention cost in real robot or high-fidelity simulator experiments.
+Failure-predictive morphology is not ICLR-main ready. The rebuilt and rerun evidence shows that the proposed method improves the explicit prediction target, but online system identification produces better execution and ablations contradict the full mechanism. The correct terminal action is \textbf{KILL/ARCHIVE}. A revival would require a substantially new empirical project where morphology-conditioned failure prediction beats adaptive control, constrained MPC, conformal shielding, and red-team retrieval on success, safety, regret, and intervention cost in real robot or high-fidelity simulator experiments.
 
 \end{document}
