@@ -65,3 +65,27 @@ Action: Frame as a negative evidence audit, not a submission.
 Verdict: Terminal condition reached.
 
 Action: Mark KILL_ARCHIVE and stop Paper 95 after public repo/PDF/report updates.
+
+## v4 Rerun Gate Round 9
+
+Attack: The 2026-06-15 rerun might show that prediction accuracy now translates into better execution.
+
+Verdict: Failed. The proposed method reaches task success `0.58155`, while `online_system_identification` reaches `0.61845`; paired success difference is `-0.03690 +/- 0.00928`.
+
+Action: Keep KILL_ARCHIVE.
+
+## v4 Rerun Gate Round 10
+
+Attack: Lower dominant-failure rate might compensate for lower task success.
+
+Verdict: Failed for ICLR main. The proposed method reduces dominant-failure rate by `0.01667 +/- 0.00750`, but has higher safety violation by `0.02030 +/- 0.00581` and higher regret by `0.01759 +/- 0.00248`.
+
+Action: Preserve the diagnostic signal, not submission readiness.
+
+## v4 Rerun Gate Round 11
+
+Attack: Ablations might validate the full morphology-conditioned intervention policy.
+
+Verdict: Failed. `minus_calibration` and `minus_intervention_cost_model` beat the full method on task success.
+
+Action: Keep the negative audit and archive.
