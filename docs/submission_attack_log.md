@@ -2,13 +2,13 @@
 
 Paper: 95 failure_predictive_morphology
 
-This v4 pass applies the ICLR main-conference bar with a paper-specific morphology-failure benchmark. The result is an honest archive decision, not a workshop resubmission.
+This v5 pass applies the ICLR main-conference bar with an expanded paper-specific morphology-failure benchmark. The result is an honest archive decision, not a workshop resubmission.
 
 ## Attack 1: Prediction accuracy may not improve closed-loop execution.
 
 Verdict: Confirmed.
 
-Evidence: proposed_failure_predictive_morphology has higher dominant-failure accuracy than online_system_identification, 0.644 vs 0.555, but lower task success, 0.582 vs 0.618.
+Evidence: cost_calibrated_failure_predictive_morphology_v5 has higher dominant-failure accuracy than online_system_identification, 0.695 vs 0.558, but lower task success, 0.563 vs 0.705.
 
 Action: Kill/archive. The central claim requires execution gains, not only better labels.
 
@@ -16,7 +16,7 @@ Action: Kill/archive. The central claim requires execution gains, not only bette
 
 Verdict: Confirmed.
 
-Evidence: online_system_identification is the strongest non-oracle success baseline under combined stress. Paired proposed-minus-online-system-ID success difference is -0.03690 +/- 0.00928 over 175 morphology/task/seed groups.
+Evidence: online_system_identification is the strongest non-oracle success and utility baseline on the hard aggregate: success 0.705, regret 0.168, utility 0.376. V5 reaches success 0.563, regret 0.208, utility 0.150.
 
 Action: Kill/archive.
 
@@ -24,7 +24,7 @@ Action: Kill/archive.
 
 Verdict: Confirmed.
 
-Evidence: proposed safety violation is 0.110 vs 0.090 for online system identification; paired difference is +0.02030 +/- 0.00581.
+Evidence: v5 safety violation is 0.112, while conformal_risk_shield reaches 0.026.
 
 Action: Do not claim safety improvement.
 
@@ -32,7 +32,7 @@ Action: Do not claim safety improvement.
 
 Verdict: Confirmed.
 
-Evidence: `minus_intervention_cost_model` and `minus_calibration` beat the full proposed method on task success in the ablation table.
+Evidence: `online_adaptation_only` is the best ablation, beating the full v5 mechanism on the deployment objective.
 
 Action: Kill/archive. Ablation contradictions are fatal for an ICLR-main mechanism claim.
 
@@ -40,7 +40,7 @@ Action: Kill/archive. Ablation contradictions are fatal for an ICLR-main mechani
 
 Verdict: Confirmed.
 
-Evidence: constraint_aware_mpc safety violation is 0.077 and conformal_risk_shield safety violation is 0.058, both lower than the proposed 0.110, although they have lower task success.
+Evidence: constraint_aware_mpc safety violation is 0.051 and conformal_risk_shield safety violation is 0.026, both lower than v5's 0.112.
 
 Action: State the safety tradeoff honestly.
 
@@ -56,7 +56,7 @@ Action: Do not claim novelty from generic failure prediction or morphology condi
 
 Verdict: Still true.
 
-Evidence: the v4 benchmark is reproducible and paper-specific, but it is not real robot or high-fidelity simulator validation.
+Evidence: the v5 benchmark is reproducible and paper-specific, but it is not real robot or high-fidelity simulator validation.
 
 Action: Frame as a negative evidence audit, not a submission.
 
@@ -66,26 +66,26 @@ Verdict: Terminal condition reached.
 
 Action: Mark KILL_ARCHIVE and stop Paper 95 after public repo/PDF/report updates.
 
-## v4 Rerun Gate Round 9
+## v5 Expanded Gate Round 9
 
-Attack: The 2026-06-15 rerun might show that prediction accuracy now translates into better execution.
+Attack: The 2026-06-22 expanded run might show that prediction accuracy now translates into better execution.
 
-Verdict: Failed. The proposed method reaches task success `0.58155`, while `online_system_identification` reaches `0.61845`; paired success difference is `-0.03690 +/- 0.00928`.
+Verdict: Failed. V5 reaches hard success `0.56302`, while `online_system_identification` reaches `0.70521`.
 
 Action: Keep KILL_ARCHIVE.
 
-## v4 Rerun Gate Round 10
+## v5 Expanded Gate Round 10
 
 Attack: Lower dominant-failure rate might compensate for lower task success.
 
-Verdict: Failed for ICLR main. The proposed method reduces dominant-failure rate by `0.01667 +/- 0.00750`, but has higher safety violation by `0.02030 +/- 0.00581` and higher regret by `0.01759 +/- 0.00248`.
+Verdict: Failed for ICLR main. V5 improves failure-family accuracy, but safety violation rises to `0.11198`, regret rises to `0.20755`, and robust utility falls to `0.15027`.
 
 Action: Preserve the diagnostic signal, not submission readiness.
 
-## v4 Rerun Gate Round 11
+## v5 Expanded Gate Round 11
 
 Attack: Ablations might validate the full morphology-conditioned intervention policy.
 
-Verdict: Failed. `minus_calibration` and `minus_intervention_cost_model` beat the full method on task success.
+Verdict: Failed. `online_adaptation_only` is the best ablation.
 
 Action: Keep the negative audit and archive.

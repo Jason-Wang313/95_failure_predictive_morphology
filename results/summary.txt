@@ -1,32 +1,54 @@
-Paper 95: failure_predictive_morphology evidence audit
-Seeds: 7; morphologies: 5; tasks: 5; splits: 5; episodes per group: 96
-Evidence type: deterministic local morphology-failure benchmark, not robot hardware validation.
-Terminal decision: KILL_ARCHIVE
-Reason: Proposed morphology-conditioned failure prediction does not clear the ICLR-main gate: the strongest closed-loop baseline (online_system_identification) has higher combined-stress task success, and prediction gains do not translate into a decisive safety/regret win.
+Paper 95 failure_predictive_morphology v5 expanded audit
+Terminal recommendation: KILL_ARCHIVE
+ICLR main ready: no
+Reason: expanded CPU-only morphology-failure audit tests whether prediction accuracy converts into closed-loop deployment gains; v5 improves over v4 and has strong prediction metrics, but it remains non-submittable if adaptive/control baselines win deployment gates.
+Main rollout rows: 322560
+Dataset summary rows: 23040
+Main seed-metric rows: 1120
+Main metric rows: 1568
+Main pairwise rows: 1344
+Hard aggregate seed rows: 140
+Hard aggregate metric rows: 196
+Hard aggregate pairwise rows: 168
+Ablation rollout rows: 115200
+Ablation seed rows: 100
+Ablation metric rows: 140
+Stress raw rows: 259200
+Stress seed rows: 720
+Stress metric rows: 1008
+Fixed-risk raw rows: 138240
+Fixed-risk seed rows: 480
+Fixed-risk metric rows: 288
+Fixed-risk pairwise rows: 240
+Negative cases: 24
 
-Combined-stress ranking by task success:
-- oracle_failure_family: success=0.8817 +/- 0.0050; accuracy=0.9869; failure=0.0019; safety=0.0261; cost=0.0102; regret=0.0240
-- online_system_identification: success=0.6185 +/- 0.0075; accuracy=0.5555; failure=0.1911; safety=0.0899; cost=0.0282; regret=0.1930
-- proposed_failure_predictive_morphology: success=0.5816 +/- 0.0075; accuracy=0.6439; failure=0.1744; safety=0.1102; cost=0.0315; regret=0.2106
-- red_team_failure_retrieval: success=0.5789 +/- 0.0076; accuracy=0.5393; failure=0.2191; safety=0.1120; cost=0.0360; regret=0.2271
-- constraint_aware_mpc: success=0.5699 +/- 0.0080; accuracy=0.3574; failure=0.2918; safety=0.0773; cost=0.0251; regret=0.2400
-- conformal_risk_shield: success=0.5448 +/- 0.0074; accuracy=0.2809; failure=0.3401; safety=0.0585; cost=0.0418; regret=0.2634
-- domain_randomized_policy_selector: success=0.5346 +/- 0.0078; accuracy=0.3946; failure=0.2957; safety=0.1248; cost=0.0180; regret=0.2656
-- per_morphology_calibrated_predictor: success=0.4520 +/- 0.0080; accuracy=0.4188; failure=0.3271; safety=0.1766; cost=0.0143; regret=0.3228
-- generic_failure_predictor: success=0.3919 +/- 0.0080; accuracy=0.0871; failure=0.5571; safety=0.2061; cost=0.0116; regret=0.4036
-
-Gate details:
-- Strongest non-oracle success baseline: online_system_identification (0.6185)
-- Proposed success: 0.5815
-- Best non-oracle dominant-failure baseline: online_system_identification (0.1911)
-- Proposed dominant-failure rate: 0.1744
-- Best non-oracle accuracy baseline: online_system_identification (0.5555)
-- Proposed accuracy: 0.6439; cost: 0.0315; unnecessary intervention: 0.0000
-- Ablations matching full within gate tolerance: minus_calibration, minus_intervention_cost_model
-
-Failure cases:
-- aerial_manipulator: success=0.5497, accuracy=0.6315, failure=0.1926, safety=0.1408; payload inertia and actuator saturation leave high regret despite good family prediction
-- arm_gripper: success=0.5842, accuracy=0.6613, failure=0.1667, safety=0.1137; contact geometry is predicted but intervention cost and precision penalties reduce success
-- differential_drive: success=0.6104, accuracy=0.6488, failure=0.1562, safety=0.0818; traction and turn-radius bottlenecks are often handled as well by constraint-aware MPC
-- quadruped: success=0.5878, accuracy=0.6426, failure=0.1726, safety=0.1015; terrain slip creates failure modes that online system identification adapts to faster
-- underwater_vehicle: success=0.5756, accuracy=0.6351, failure=0.1839, safety=0.1134; state-estimation dropout and drag shifts favor conservative constraint-aware control
+Frozen hard-aggregate gate:
+best_success_reference=online_system_identification
+best_accuracy_reference=morphology_failure_transformer_prior
+best_safety_reference=conformal_risk_shield
+best_regret_reference=online_system_identification
+best_utility_reference=online_system_identification
+best_ablation=online_adaptation_only
+max_stress_reference=online_system_identification
+v5_success=0.56302
+best_success=0.70521
+v5_accuracy=0.69462
+best_accuracy=0.62604
+v5_safety=0.11198
+best_safety=0.02587
+v5_regret=0.20755
+best_regret=0.16782
+v5_utility=0.15027
+best_utility=0.37566
+success_gate=False
+prediction_gate=True
+safety_gate=False
+regret_gate=False
+utility_gate=False
+ablation_gate=False
+stress_gate=True
+fixed_risk_gate=True
+scope_gate=False
+low_signal_morphology_stress: v5_coverage=0.39479
+combined_failure_stress: v5_coverage=0.35104
+terminal=KILL_ARCHIVE

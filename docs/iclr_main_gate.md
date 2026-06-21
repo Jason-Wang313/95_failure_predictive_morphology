@@ -2,21 +2,33 @@
 
 Paper: 95 failure_predictive_morphology
 
-Submission-hardening version: v4.1 rerun audit
+Submission-hardening version: v5 expanded negative evidence audit
 
 Gate verdict: KILL_ARCHIVE
 
-Latest rerun: 2026-06-15
+Latest rerun: 2026-06-22
 
-Evidence digest: v4 deterministic morphology-failure benchmark, seven seeds, five morphologies, five tasks, five splits, nine methods, ablations, stress sweep, paired confidence intervals, and failure cases; v4.1 rerun reproduced the same terminal gate failure.
+Evidence digest: v5 deterministic morphology-failure benchmark with 10 seeds, 6 morphologies, 6 tasks, 8 splits, 14 methods, ablations, stress sweep, fixed-risk budgets, paired confidence intervals, and negative cases.
+
+Gate vector:
+
+- success_gate=False
+- prediction_gate=True
+- safety_gate=False
+- regret_gate=False
+- utility_gate=False
+- ablation_gate=False
+- stress_gate=True
+- fixed_risk_gate=True
+- scope_gate=False
 
 Fatal blockers:
 
-- The proposed method loses combined-stress task success to online system identification.
-- Proposed task success is 0.582 +/- 0.007 vs 0.618 +/- 0.008 for online system identification.
-- Proposed safety violation is 0.110 vs 0.090.
-- Proposed planning regret is 0.211 vs 0.193.
-- Two ablations beat the full method on task success.
+- V5 loses hard-aggregate task success to online system identification: 0.56302 vs 0.70521.
+- V5 loses hard-aggregate robust utility to online system identification: 0.15027 vs 0.37566.
+- V5 loses hard-aggregate regret to online system identification: 0.20755 vs 0.16782.
+- V5 loses safety to conformal risk shielding: 0.11198 vs 0.02587.
+- The best ablation is `online_adaptation_only`.
 - The evidence is local simulation rather than real robot or high-fidelity simulator validation.
 
 The only honest main-conference-safe decision is to archive rather than overclaim.
