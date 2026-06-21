@@ -37,3 +37,13 @@
 - Confirmed the proposed method improves accuracy by `+0.08839 +/- 0.01025` but has worse safety violation and regret.
 - Confirmed `minus_calibration` and `minus_intervention_cost_model` beat the full method on task success.
 - Updated child docs and paper source to keep the v4 KILL_ARCHIVE decision evidence-bound.
+
+## v5 - 2026-06-22 Expanded Negative Evidence Audit
+
+- Froze `docs/paper95_expanded_submission_plan_20260622.md` before interpreting the expanded results.
+- Replaced the v4.1 experiment with a 10-seed, 6-morphology, 6-task, 8-split, 14-method protocol.
+- Generated 322,560 main rollout rows, 115,200 ablation rollout rows, 259,200 stress-sweep raw rows, and 138,240 fixed-risk raw rows.
+- Added fixed-risk budgets, hard-aggregate paired tests, negative cases, and v5 figures.
+- Rebuilt the manuscript into a 30-page ICLR-style archive with bright boxed clickable citations and 230 bibliography entries.
+- Validated `C:/Users/wangz/Downloads/95.pdf` with SHA256 `3DD7C8EE18B03A34E5DE903EB93067F7CE64396EB76E4E7D21C3E3F859B1802B`.
+- Terminal decision remains: KILL_ARCHIVE.

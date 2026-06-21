@@ -1,24 +1,25 @@
 # Experiment Rigor Checklist
 
-## Completed In v4
+## Completed In v5
 
-- [x] Concrete pre-execution rebuild plan.
+- [x] Concrete pre-execution expanded plan.
 - [x] Hostile prior-work pressure from the shared robotics literature pool.
 - [x] Paper-specific morphology-failure benchmark.
-- [x] Five morphologies: differential drive, quadruped, arm gripper, aerial manipulator, and underwater vehicle.
-- [x] Five tasks: tight-turn navigation, payload transport, gap/step crossing, precision contact manipulation, and disturbance recovery.
-- [x] Five splits: nominal morphology, payload shift, terrain/fluid shift, actuator degradation shift, and combined failure stress.
-- [x] Seven dominant failure families.
-- [x] Nine methods including per-morphology calibration, constraint-aware MPC, conformal risk shielding, domain randomization, online system identification, red-team retrieval, proposed morphology prediction, and oracle.
-- [x] Seven deterministic seeds.
-- [x] Per-morphology/per-task/per-seed metrics.
+- [x] Six morphologies: differential drive, quadruped, arm gripper, aerial manipulator, underwater vehicle, and soft snake robot.
+- [x] Six tasks: tight-turn navigation, payload transport, gap/step crossing, precision contact manipulation, disturbance recovery, and cluttered tool use.
+- [x] Eight splits: nominal morphology, payload shift, terrain/fluid shift, actuator degradation shift, sensor dropout shift, contact geometry shift, low-signal morphology stress, and combined failure stress.
+- [x] Fourteen methods including constrained MPC, conformal shielding, domain randomization, online system identification, meta-adaptive MPC, transformer prior, retrieval memory, risk-aware intervention, v4, v5, and oracle.
+- [x] Ten deterministic seeds.
+- [x] 322,560 main rollout rows.
+- [x] 115,200 ablation rollout rows.
+- [x] 259,200 stress-sweep raw rows.
+- [x] 138,240 fixed-risk raw rows.
+- [x] Per-split, hard-aggregate, paired, ablation, stress, fixed-risk, and negative-case metrics.
 - [x] 95 percent confidence intervals.
-- [x] Paired morphology/task/seed comparison against the strongest non-oracle baseline.
-- [x] Ablations for morphology embedding, constraint-family head, calibration, intervention cost model, morphology-only, and failure-history-only.
-- [x] Stress sweep across payload, terrain/fluid, actuator degradation, sensor dropout, contact tightness, and combined maximum stress.
-- [x] Failure-case analysis.
-- [x] Numeric hygiene audit: no NaN or Inf values in generated CSVs.
-- [x] Paper-specific figures and LaTeX tables.
+- [x] Fixed-risk budgets 0.00, 0.05, 0.10, and 0.15.
+- [x] Paper-specific v5 figures.
+- [x] 30-page archive manuscript with bright boxed clickable citations.
+- [x] Artifact validator.
 
 ## Still Missing For ICLR Main
 
@@ -26,7 +27,7 @@
 - [ ] High-fidelity simulator benchmark.
 - [ ] Trained model checkpoints.
 - [ ] Integrated external baseline codebases.
-- [ ] Manual full-paper related-work synthesis beyond the local hostile pool.
+- [ ] Independent third-party reproduction.
 - [ ] Hardware videos or qualitative rollouts.
 
-Decision: KILL_ARCHIVE after v4.1 rerun. The local benchmark is rigorous enough to falsify the generated claim, not enough to revive it as an ICLR-main submission.
+Decision: KILL_ARCHIVE after v5. The local benchmark is rigorous enough to falsify the generated claim, not enough to revive it as an ICLR-main submission.

@@ -2,17 +2,25 @@
 
 1. Chosen thesis: Failure-Predictive Morphology tests whether morphology-conditioned failure-family prediction improves controller selection under embodiment shift.
 2. ICLR-main decision: KILL_ARCHIVE.
-3. Submission-hardening version: v4.1 rerun audit.
-4. Last update: 2026-06-15 13:27:22 +0100.
-5. Evidence: deterministic local morphology-failure benchmark with seven seeds, five morphologies, five tasks, five splits, nine methods, ablations, stress sweeps, paired confidence intervals, and failure cases.
-6. Strongest non-oracle baseline: online_system_identification.
-7. Combined-stress evidence: online system identification reaches 0.618 +/- 0.008 task success; the proposed method reaches 0.582 +/- 0.007.
-8. Paired task/morphology/seed result: proposed minus online system identification is -0.03690 +/- 0.00928 for success, -0.01667 +/- 0.00750 for dominant failure rate, +0.02030 +/- 0.00581 for safety violations, +0.00327 +/- 0.00059 for cost, +0.01759 +/- 0.00248 for regret, and +0.08839 +/- 0.01025 for accuracy.
-9. Main failure mode: prediction accuracy improves, but online adaptation and conservative control produce better execution tradeoffs.
-10. Ablation failure: `minus_calibration` and `minus_intervention_cost_model` beat full on task success.
-11. Closest hostile prior work: see `docs/hostile_prior_work.md`, `docs/hostile_prior_work_100_cards.csv`, and `docs/hostile_reviewer_response.md`.
-12. Reproducibility: `python src/run_experiment.py` regenerates the CSVs, figures, LaTeX tables, and terminal decision; the 2026-06-15 rerun completed successfully.
-13. Claim-validity status: ICLR-main claim killed; archive retained as a negative evidence report.
-14. Exact Downloads PDF path: `C:/Users/wangz/Downloads/95.pdf`.
-15. GitHub URL: https://github.com/Jason-Wang313/95_failure_predictive_morphology.
-16. Confirmation: no visible Desktop PDF copy was requested or made.
+3. Submission-hardening version: v5 expanded negative evidence audit.
+4. Last update: 2026-06-22 Asia/Shanghai.
+5. Evidence: deterministic CPU-only morphology-failure benchmark with 10 seeds, 6 morphologies, 6 tasks, 8 splits, 14 methods, ablations, stress sweeps, fixed-risk budgets, paired confidence intervals, and negative cases.
+6. Main rollout rows: 322,560.
+7. Ablation rollout rows: 115,200.
+8. Stress-sweep raw rows: 259,200.
+9. Fixed-risk raw rows: 138,240.
+10. Strongest non-oracle deployment baseline: online_system_identification.
+11. Hard aggregate evidence: online system identification reaches 0.70521 task success; v5 reaches 0.56302.
+12. Prediction evidence: v5 reaches 0.69462 dominant-failure accuracy; best non-v5 reference reaches 0.62604.
+13. Safety evidence: conformal risk shielding reaches 0.02587 safety violation; v5 reaches 0.11198.
+14. Regret evidence: online system identification reaches 0.16782 regret; v5 reaches 0.20755.
+15. Utility evidence: online system identification reaches 0.37566 robust utility; v5 reaches 0.15027.
+16. Ablation failure: `online_adaptation_only` is the best ablation.
+17. Gate vector: success false, prediction true, safety false, regret false, utility false, ablation false, stress true, fixed-risk true, scope false.
+18. Manuscript: 30 pages, bright boxed clickable citations, 230-entry bibliography.
+19. Validation: `python scripts/validate_submission_artifacts.py` passed.
+20. Exact Downloads PDF path: `C:/Users/wangz/Downloads/95.pdf`.
+21. PDF SHA256: `3DD7C8EE18B03A34E5DE903EB93067F7CE64396EB76E4E7D21C3E3F859B1802B`.
+22. GitHub URL: https://github.com/Jason-Wang313/95_failure_predictive_morphology.
+23. Confirmation: no visible Desktop PDF copy was requested or made.
+24. Claim-validity status: ICLR-main claim killed; archive retained as a negative evidence report.

@@ -15,14 +15,15 @@ Paper: 95 Failure-Predictive Morphology
 
 ## Hostile ICLR-Main Response
 
-A hostile reviewer should reject this as an ICLR-main submission. The v4 rebuild replaces the shared template experiment with a paper-specific morphology-failure benchmark, but the central claim still fails.
+A hostile reviewer should reject this as an ICLR-main submission. The v5 rebuild expands the paper-specific morphology-failure benchmark, but the central claim still fails.
 
 The proposed method predicts dominant failure families better than all non-oracle baselines, but the closed-loop result is negative:
 
-- Task success: 0.582 +/- 0.007 vs 0.618 +/- 0.008 for online system identification.
-- Safety violation: 0.110 vs 0.090.
-- Planning regret: 0.211 vs 0.193.
-- Dominant-failure accuracy: 0.644 vs 0.555.
+- Task success: 0.563 for v5 vs 0.705 for online system identification.
+- Safety violation: 0.112 for v5 vs 0.026 for conformal risk shielding.
+- Planning regret: 0.208 for v5 vs 0.168 for online system identification.
+- Robust utility: 0.150 for v5 vs 0.376 for online system identification.
+- Dominant-failure accuracy: 0.695 for v5 vs 0.558 for online system identification.
 
 This is precisely the reviewer trap: better labels are not enough if an adaptive controller uses weaker explicit prediction but produces better execution.
 
